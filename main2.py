@@ -80,28 +80,29 @@ def cordscrape(originserv, target):
         with open('citys', 'a') as f:
             f.write("\n" + a)
 
-import calculation
-import plotter
 
 check = os.path.join(os.path.curdir, 'citys')
 check2 = os.path.join(os.path.curdir, 'ping')
 start = 0
 origin = "New%20York"
+origin2 = "New York"
 if not exists(check) and exists(check2):
     start = 1
     pingscrape(origin)    
-    cordscrape(origin)
+    cordscrape(origin, origin2)
 else:
     start = 0
-    x = '1' #input("run program/update your data (not needed) [1/2]:")
+    x = input("run program/update your data (not needed) [1/2]:")
     if x == "1":
-        ping = 50#input("what is player ping: ")
+        ping = input("what is player ping: ")
         pingscrape(origin)
+        import calculation
+        import plotter
         calculation.main(ping)
         plotter.main('New York')
     if x == "2":
         pingscrape(origin)    
-        cordscrape(origin, 'New York')
+        cordscrape(origin, origin2)
 
 
  
